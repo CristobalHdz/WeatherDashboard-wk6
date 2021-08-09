@@ -1,0 +1,27 @@
+#title{
+    background-color:darkcyan;
+    color:white
+}
+
+#inputWrapper{
+    background-color: gainsboro;
+    height:100%
+}
+
+#searchCards{
+    width:100%;
+    background-color: burlywood;
+    margin-top:30px;
+    height:50px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+h6{
+    font-weight: bold;
+}
+
+#formInput{
+    margin-bottom: 30px;
+    border-bottom: 5px gray solid;
+}
