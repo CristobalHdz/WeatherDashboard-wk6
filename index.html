@@ -15,36 +15,95 @@
         <div id="title" class="col l12 center-align">
             <h3><b>Weather Dashboard</b></h3>
         </div>
-        <div class="col l4 center-align" id="inputWrapper">
-            <h3><b>Search for a City</b></h3>
-            <form id="formInput">
-                <input placeholder="Enter a city name" />
-                <button class="waves-effect waves-light btn-large">Search</button>
-            </form>
-            <div id="searchCards" class="col center-align">
-                <h6>Los Angeles</h6>
+        <div class="col l12 center-align">
+            <div class="col l2 center-align" id="inputWrapper">
+                <h3><b>Search for a City</b></h3>
+                <form id="formInput">
+                    <input placeholder="Enter a city name" />
+                    <button class="waves-effect waves-light btn-large">Search</button>
+                </form>
+                <div id="searchCards" class="col center-align">
+                    <h6>Los Angeles</h6>
+                </div>
+                <div id="searchCards" class="col center-align">
+                    <h6>Los Angeles</h6>
+                </div>
+                <div id="searchCards" class="col center-align">
+                    <h6>Los Angeles</h6>
+                </div>
+                <div id="searchCards" class="col center-align">
+                    <h6>Los Angeles</h6>
+                </div>
+                <div id="searchCards" class="col center-align">
+                    <h6>Los Angeles</h6>
+                </div>
+                <div id="searchCards" class="col center-align">
+                    <h6>Los Angeles</h6>
+                </div>
             </div>
-            <div id="searchCards" class="col center-align">
-                <h6>Los Angeles</h6>
+            <div class="col l9" id="todayCont">
+                <div id="City-Name-Date" class="left-align">
+                    <h3>Atlanta 10/08/2021 ☁</h3>
+                </div>
+                <div id="overallData" class="left-align">
+                    <div>
+                        <p>Temp:</p><span id="temp"></span>
+                    </div>
+                    <div>
+                        <p>Wind:</p><span id="wind"></span>
+                    </div>
+                    <div>
+                        <p>Humidity:</p><span id="humidity"></span>
+                    </div>
+                    <div>
+                        <p>UV Index:</p><span id="UVindex"></span>
+                    </div>
+                </div>
             </div>
-            <div id="searchCards" class="col center-align">
-                <h6>Los Angeles</h6>
-            </div>
-            <div id="searchCards" class="col center-align">
-                <h6>Los Angeles</h6>
-            </div>
-            <div id="searchCards" class="col center-align">
-                <h6>Los Angeles</h6>
-            </div>
-            <div id="searchCards" class="col center-align">
-                <h6>Los Angeles</h6>
+            <div class="col l10" id=weatherCards>
+                <div class="col l2 left-align" id="weatherOne">
+                    <h4>3/01/2021</h4>
+                    <h5>🌧</h5>
+                    <h5>Temp:<span id="oneTemp">12</span>F</h5>
+                    <h5>Wind:<span id="oneWind">12</span>MPH</h5>
+                    <h5>Humidity:<span id="oneHumid">12</span>%</h5>
+                </div>
+                <div class="col l2 left-align" id="weatherTwo">
+                    <h4>3/02/2021</h4>
+                    <h5>🌧</h5>
+                    <h5>Temp:<span id="twoTemp">12</span>F</h5>
+                    <h5>Wind:<span id="twoWind">12</span>MPH</h5>
+                    <h5>Humidity:<span id="otwoHumid">12</span>%</h5>
+                </div>
+                <div class="col l2 left-align" id="weatherThree">
+                    <h4>3/03/2021</h4>
+                    <h5>🌧</h5>
+                    <h5>Temp:<span id="threeTemp">12</span>F</h5>
+                    <h5>Wind:<span id="threeWind">12</span>MPH</h5>
+                    <h5>Humidity:<span id="threeHumid">12</span>%</h5>
+                </div>
+                <div class="col l2 left-align" id="weatherFour">
+                    <h4>3/04/2021</h4>
+                    <h5>🌧</h5>
+                    <h5>Temp:<span id="fourTemp">12</span>F</h5>
+                    <h5>Wind:<span id="fourWind">12</span>MPH</h5>
+                    <h5>Humidity:<span id="fourHumid">12</span>%</h5>
+                </div>
+                <div class="col l2 left-align" id="weatherFive">
+                    <h4>3/05/2021</h4>
+                    <h5>🌧</h5>
+                    <h5>Temp:<span id="fiveTemp">12</span>F</h5>
+                    <h5>Wind:<span id="fiveWind">12</span>MPH</h5>
+                    <h5>Humidity:<span id="fiveHumid">12</span>%</h5>
+                </div>
             </div>
         </div>
+
+
     </div>
 
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/api.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
