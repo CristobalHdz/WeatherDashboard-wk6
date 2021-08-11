@@ -8,13 +8,32 @@
     height:100%
 }
 
-#searchCards{
+#uvindex{
+    border: 1px solid black;
+    padding: 5px 8px;
+    border-radius:5px;
+}
+
+.favorableUV{
+    background-color: green;
+
+} 
+
+.moderateUV{
+    background-color: yellow;
+} 
+
+.severeUV{
+    background-color: red;
+}
+
+#searchCards button{
     width:100%;
     background-color: burlywood;
-    margin-top:30px;
     height:50px;
     font-weight: bold;
     border-radius: 10px;
+    color: black;
 }
 
 h6{
@@ -22,7 +41,7 @@ h6{
 }
 
 button{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 #formInput{
@@ -43,6 +62,10 @@ button{
     margin-left: 50px
 }
 
+#overallData span {
+    margin-left: 10px;
+}
+
 #weatherCards div{
     background-color: rgb(65, 65, 65);
     margin-top:30px;
@@ -51,4 +74,12 @@ button{
     font-weight: bold;
     color: white;
     padding-bottom: 20px;
+}
+
+#searchCards p{
+    margin-bottom: 0;
+}
+
+:hover #searchCards button{
+    cursor: pointer;
 }
