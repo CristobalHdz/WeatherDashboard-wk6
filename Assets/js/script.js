@@ -27,7 +27,7 @@ $(document).ready(function () {
             }
         };
 
-        //Set city local storage and add button
+        //Set city local storage
         if (counterBtn <= 5) {
             saveBtnId = $(`#button${[counterBtn]}`).attr("id")
             buttonText = $(this).siblings("#inputCity").val();
@@ -45,7 +45,7 @@ $(document).ready(function () {
         // Adds local storage for the cities when submiting 
         //& removes buttons when empty
         for (i = 1; i < 6; i++) {
-            $(`#button${[i]}`).text(localStorage.getItem(`button${[i]}`));
+                $(`#button${[i]}`).text(localStorage.getItem(`button${[i]}`));
             if ($(`#button${[i]}`).text().trim().length == 0) {
                 $(`#button${[i]}`).hide();
             } else {
