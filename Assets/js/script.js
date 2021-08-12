@@ -1,22 +1,67 @@
-const apiKey = "d9235188ee1dfa97a1e1172ed2cc965b"
 $(document).ready(function () {
+
+    var apiKey = "b0694486eaf3f80b971e7c31f05c245c"
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?"
+    var futureDaysURL = "https://api.openweathermap.org/data/2.5/forecast/?"
     var saveBtnId = "";
     var buttonText = ""; // Text that will be saved into the btn
     var counterBtn = 1;
-    var date = moment().format("MM/DD/YYYY")
+    var date = moment().format("MM/DD/YYYY");
+    var daysCards = 5
 
     //Submit button functions
     $("#inputBtn").on("click", function (event) {
         event.preventDefault();
         let searchCity = $("#inputCity").val();
 
-        //Change uv colors
-        function uvColors() {
-            if (searchCity < 3) {
+        //Calls API
+        $.ajax({
+            url: apiURL + 'q' + '=' + searchCity + '&units=imperial&appid=' + apiKey,
+            dataType: "json",
+            type: "GET",
+            success: function (data) {
+                var result = outputData(data);
+                getUvIndex(data);
+                $("#todayCont").html(result);
+                $("#todayCont").val('');
+            }
+        });
+
+        // Connects to API which gives the humidity
+        function getUvIndex(data) {
+            var lon = data.coord.lon
+            var lat = data.coord.lat
+            var UVURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${apiKey}`
+            $.ajax({
+                url: UVURL,
+                dataType: "json",
+                type: "GET",
+                success: function (uvData) {
+                    var uvResult = uvColor(uvData);
+                    $("#uvindex").html(uvResult);
+                    $("#unindex").val('');
+                }
+            })
+        };
+
+        //Renders today's weather
+        function outputData(data) {
+            return "<div class='left-align col l6'><h3>" + data.name + ' ' + date + "<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png' class='col l2'></h3></div>" +
+                "<div class='col l8 left-align'><h5>Temp:<b> " + data.main.temp + "</b>°F</h5></div>" +
+                "<div class='col l8 left-align'><h5>Wind:<b> " + data.wind.speed + " </b>Miles/Hr</h5></div>" +
+                "<div class='col l8 left-align'><h5>Humidity:<b> " + data.main.humidity + "</b>%</h5></div>" +
+                "<div class='col l8 left-align'><h5>UV Index: <b id='uvindex'> " + + " </b>%</h5></div>" +
+                "</div>"
+        };
+
+        // Defines the color of the UV and the UV Index
+        function uvColor(uvData) {
+            $('#uvindex').html("<span>" + uvData.current.uvi + "</span>")
+            if (uvData.current.uvi < 3) {
                 $("#uvindex").addClass('favorableUV')
                 $("#uvindex").removeClass('moderateUV')
                 $("#uvindex").removeClass('severeUV')
-            } else if (searchCity < 6) {
+            } else if (uvData.current.uvi < 6) {
                 $("#uvindex").removeClass('favorableUV')
                 $("#uvindex").addClass('moderateUV')
                 $("#uvindex").removeClass('severeUV')
@@ -24,8 +69,36 @@ $(document).ready(function () {
                 $("#uvindex").removeClass('favorableUV')
                 $("#uvindex").removeClass('moderateUV')
                 $("#uvindex").addClass('severeUV')
+            };
+        };
+
+        // Get future days REMOVE IF CRASH
+        $.ajax({
+            url: futureDaysURL + 'q=' + searchCity + '&units=imperial' + '&appid=' + apiKey,
+            dataType: "json",
+            type: "GET",
+            success: function (dayData) {
+                var dayResult = dailyCards(dayData);
+                $("#weatherCards").html(dayResult);
+                $("#weatherCards").val('');
+                console.log(dayData)
+            }
+        });
+
+
+        function dailyCards(dayData) {
+            for (i = 0; i <= daysCards; i++) {
+                var dayFormat = dayData.list[i].dt
+                return "<div class='col l2 left-align'>" +
+                    "<h4>" + dayFormat + "</h4>" +
+                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + dayData.list[i].weather[0].icon + ".png'" + "</h5>"+
+                    "<h5>Temp: <b>" + dayData.list[i].main.temp +"</b>°F</h5>" +
+                    "<h5>Wind: <b>"+ dayData.list[i].wind.speed +" </b>MPH</h5>" +
+                    "<h5>Humidity: <b>"+ dayData.list[i].main.humidity +"</b>%</h5>" +
+                "</div>" 
             }
         };
+
 
         //Set city local storage
         if (counterBtn <= 5) {
@@ -36,7 +109,7 @@ $(document).ready(function () {
         };
 
         //Adds info into today's weather conditions
-        $("#City-Name-Date").text(searchCity + " " + date);
+        // $("#City-Name-Date").text(searchCity + " " + date);
         $("#temp").text(searchCity);
         $("#wind").text(searchCity);
         $("#humidity").text(searchCity);
@@ -45,15 +118,13 @@ $(document).ready(function () {
         // Adds local storage for the cities when submiting 
         //& removes buttons when empty
         for (i = 1; i < 6; i++) {
-                $(`#button${[i]}`).text(localStorage.getItem(`button${[i]}`));
+            $(`#button${[i]}`).text(localStorage.getItem(`button${[i]}`));
             if ($(`#button${[i]}`).text().trim().length == 0) {
                 $(`#button${[i]}`).hide();
             } else {
                 $(`#button${[i]}`).show();
             }
         };
-
-        uvColors();
     });
 
     // Gets local storage for the cities when reloding the page & removes when empty

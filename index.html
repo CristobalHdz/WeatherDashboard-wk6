@@ -20,8 +20,9 @@
                 <h3><b>Search for a City</b></h3>
 
                 <form id="formInput">
-                    <input name="search" id="inputCity" placeholder="Enter a city name" />
-                    <button name="submit" id="inputBtn" type="submit" class="waves-effect waves-light btn-large">Search</button>
+                    <input name="location" id="inputCity" placeholder="Enter a city name" />
+                    <button name="submit" id="inputBtn" type="submit"
+                        class="waves-effect waves-light btn-large">Search</button>
                     <button id="emptyStorage" class="waves-effect waves btn-large">Clear All</button>
                 </form>
 
@@ -33,63 +34,14 @@
                     <button id="button5"></button>
                 </div>
             </div>
+            
             <div class="col l9" id="todayCont">
-                <div class="left-align">
-                    <h3 id="City-Name-Date"></h3>
-                </div>
-                <div id="overallData" class="left-align">
-                    <div>
-                        <p>Temp:<span id="temp"></span></p>
-                    </div>
-                    <div>
-                        <p>Wind:<span id="wind"></span></p>
-                    </div>
-                    <div>
-                        <p>Humidity:<span id="humidity"></span></p>
-                    </div>
-                    <div>
-                        <p>UV Index:<span id="uvindex"></span></p>
-                    </div>
-                </div>
+                <div id='overallData'></div>
             </div>
-            <div class="col l10" id=weatherCards>
-                <div class="col l2 left-align" id="weatherOne">
-                    <h4>3/01/2021</h4>
-                    <h5>🌧</h5>
-                    <h5>Temp:<span id="oneTemp"></span>F</h5>
-                    <h5>Wind:<span id="oneWind"></span>MPH</h5>
-                    <h5>Humidity:<span id="oneHumid"></span>%</h5>
-                </div>
-                <div class="col l2 left-align" id="weatherTwo">
-                    <h4>3/02/2021</h4>
-                    <h5>🌧</h5>
-                    <h5>Temp:<span id="twoTemp"></span>F</h5>
-                    <h5>Wind:<span id="twoWind"></span>MPH</h5>
-                    <h5>Humidity:<span id="otwoHumid"></span>%</h5>
-                </div>
-                <div class="col l2 left-align" id="weatherThree">
-                    <h4>3/03/2021</h4>
-                    <h5>🌧</h5>
-                    <h5>Temp:<span id="threeTemp"></span>F</h5>
-                    <h5>Wind:<span id="threeWind"></span>MPH</h5>
-                    <h5>Humidity:<span id="threeHumid"></span>%</h5>
-                </div>
-                <div class="col l2 left-align" id="weatherFour">
-                    <h4>3/04/2021</h4>
-                    <h5>🌧</h5>
-                    <h5>Temp:<span id="fourTemp"></span>F</h5>
-                    <h5>Wind:<span id="fourWind"></span>MPH</h5>
-                    <h5>Humidity:<span id="fourHumid"></span>%</h5>
-                </div>
-                <div class="col l2 left-align" id="weatherFive">
-                    <h4>3/05/2021</h4>
-                    <h5>🌧</h5>
-                    <h5>Temp:<span id="fiveTemp"></span>F</h5>
-                    <h5>Wind:<span id="fiveWind"></span>MPH</h5>
-                    <h5>Humidity:<span id="fiveHumid"></span>%</h5>
-                </div>
-            </div>
+
+            <div class="col l9" id='weatherCards'></div>
         </div>
+    </div>
 
 
     </div>
