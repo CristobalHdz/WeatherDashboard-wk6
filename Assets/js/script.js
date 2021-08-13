@@ -8,6 +8,7 @@ $(document).ready(function () {
     var counterBtn = 1;
     var date = moment().format("MM/DD/YYYY");
     var daysCards = 5
+    var maxSearchAmount = 5
 
     //Submit button functions
     $("#inputBtn").on("click", function (event) {
@@ -79,29 +80,42 @@ $(document).ready(function () {
             type: "GET",
             success: function (dayData) {
                 var dayResult = dailyCards(dayData);
-                $("#weatherCards").html(dayResult);
+                var dayResult2 = dailyCards2(dayData);
+                $("#weatherCards").html(dayResult,dayResult2);
                 $("#weatherCards").val('');
-                console.log(dayData)
             }
         });
 
 
         function dailyCards(dayData) {
-            for (i = 0; i <= daysCards; i++) {
-                var dayFormat = dayData.list[i].dt
-                return "<div class='col l2 left-align'>" +
+            for (i = 1; i <= daysCards; i++) {
+                var dayFormat = new Date(dayData.list[i].dt * 1000).toLocaleDateString("en-US")
+                return `<div class='col l2 left-align' id='card${[i]}'>` +
                     "<h4>" + dayFormat + "</h4>" +
-                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + dayData.list[i].weather[0].icon + ".png'" + "</h5>"+
-                    "<h5>Temp: <b>" + dayData.list[i].main.temp +"</b>°F</h5>" +
-                    "<h5>Wind: <b>"+ dayData.list[i].wind.speed +" </b>MPH</h5>" +
-                    "<h5>Humidity: <b>"+ dayData.list[i].main.humidity +"</b>%</h5>" +
-                "</div>" 
+                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + dayData.list[i].weather[0].icon + ".png'" + "</h5>" +
+                    "<h5>Temp: <b>" + dayData.list[i].main.temp + "</b>°F</h5>" +
+                    "<h5>Wind: <b>" + dayData.list[i].wind.speed + " </b>MPH</h5>" +
+                    "<h5>Humidity: <b>" + dayData.list[i].main.humidity + "</b>%</h5>" +
+                    "</div>"
+            }
+        };
+
+        function dailyCards2(dayData) {
+            for (i = 1; i <= daysCards; i++) {
+                var dayFormat = new Date(dayData.list[i].dt * 1000).toLocaleDateString("en-US")
+                return `<div class='col l2 left-align' id='card${[i]}'>` +
+                    "<h4>" + dayFormat + "</h4>" +
+                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + dayData.list[i].weather[0].icon + ".png'" + "</h5>" +
+                    "<h5>Temp: <b>" + dayData.list[i].main.temp + "</b>°F</h5>" +
+                    "<h5>Wind: <b>" + dayData.list[i].wind.speed + " </b>MPH</h5>" +
+                    "<h5>Humidity: <b>" + dayData.list[i].main.humidity + "</b>%</h5>" +
+                    "</div>"
             }
         };
 
 
         //Set city local storage
-        if (counterBtn <= 5) {
+        if (counterBtn <= maxSearchAmount) {
             saveBtnId = $(`#button${[counterBtn]}`).attr("id")
             buttonText = $(this).siblings("#inputCity").val();
             localStorage.setItem(saveBtnId, buttonText)
@@ -117,7 +131,7 @@ $(document).ready(function () {
 
         // Adds local storage for the cities when submiting 
         //& removes buttons when empty
-        for (i = 1; i < 6; i++) {
+        for (i = 1; i <= maxSearchAmount; i++) {
             $(`#button${[i]}`).text(localStorage.getItem(`button${[i]}`));
             if ($(`#button${[i]}`).text().trim().length == 0) {
                 $(`#button${[i]}`).hide();
@@ -128,7 +142,7 @@ $(document).ready(function () {
     });
 
     // Gets local storage for the cities when reloding the page & removes when empty
-    for (i = 1; i < 6; i++) {
+    for (i = 1; i <= maxSearchAmount; i++) {
         $(`#button${[i]}`).text(localStorage.getItem(`button${[i]}`));
         if ($(`#button${[i]}`).text().trim().length == 0) {
             $(`#button${[i]}`).hide();
@@ -139,7 +153,7 @@ $(document).ready(function () {
 
     //Remove cities from local storage
     $("#emptyStorage").on("click", function () {
-        for (i = 1; i < 6; i++) {
+        for (i = 1; i <= maxSearchAmount; i++) {
             $(`#button${[i]}`).text(localStorage.removeItem(`button${[i]}`));
             window.location.reload()
         };
