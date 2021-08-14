@@ -152,23 +152,23 @@ $(document).ready(function () {
     });
 
     //See data again when clicking a button
-    $(`#button1`).on("click", function (e) {
+    $(`#button1`).on("click", function () {
         $(`#inputCity`).val(localStorage.getItem(`button1`))
         $("[name='submit']")[0].click();
     });
-    $(`#button2`).on("click", function (e) {
+    $(`#button2`).on("click", function () {
         $(`#inputCity`).val(localStorage.getItem(`button2`))
         $("[name='submit']")[0].click();
     });
-    $(`#button3`).on("click", function (e) {
+    $(`#button3`).on("click", function () {
         $(`#inputCity`).val(localStorage.getItem(`button3`))
         $("[name='submit']")[0].click();
     });
-    $(`#button4`).on("click", function (e) {
+    $(`#button4`).on("click", function () {
         $(`#inputCity`).val(localStorage.getItem(`button4`))
         $("[name='submit']")[0].click();
     });
-    $(`#button5`).on("click", function (e) {
+    $(`#button5`).on("click", function () {
         $(`#inputCity`).val(localStorage.getItem(`button5`))
         $("[name='submit']")[0].click();
     });

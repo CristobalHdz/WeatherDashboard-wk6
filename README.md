@@ -2,11 +2,11 @@
 ## Section 01: General Information
 Sixth code Boot Camp assignment.
 
-`JavaScript fundamentals quiz`
+`Weather Dashboard`
 
 by Cristobal Hernandez
 
-Published link: 
+Published link: https://cristobalhdz.github.io/WeatherDashboard-wk6/
 
 
 # Section 02: General Information
