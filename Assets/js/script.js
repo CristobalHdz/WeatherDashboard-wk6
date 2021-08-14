@@ -6,7 +6,8 @@ $(document).ready(function () {
     var saveBtnId = "";
     var buttonText = ""; // Text that will be saved into the btn
     var counterBtn = 1;
-    var date = moment().format("MM/DD/YYYY");
+    var today = new Date();
+    var date = (today.getMonth()+1)+ '/' +today.getDate()+ '/' +today.getFullYear();
     var daysCards = 5
     var maxSearchAmount = 5
     var hoursFor24 = 8 // This is made because the API gives us the weather every 3 hours, so by multiplying it by 8 it hsould give us the weather every 24 hrs
@@ -152,23 +153,23 @@ $(document).ready(function () {
     });
 
     //See data again when clicking a button
-    $(`#button1`).on("click", function () {
+    $(`#button1`).on("click", function (e) {
         $(`#inputCity`).val(localStorage.getItem(`button1`))
         $("[name='submit']")[0].click();
     });
-    $(`#button2`).on("click", function () {
+    $(`#button2`).on("click", function (e) {
         $(`#inputCity`).val(localStorage.getItem(`button2`))
         $("[name='submit']")[0].click();
     });
-    $(`#button3`).on("click", function () {
+    $(`#button3`).on("click", function (e) {
         $(`#inputCity`).val(localStorage.getItem(`button3`))
         $("[name='submit']")[0].click();
     });
-    $(`#button4`).on("click", function () {
+    $(`#button4`).on("click", function (e) {
         $(`#inputCity`).val(localStorage.getItem(`button4`))
         $("[name='submit']")[0].click();
     });
-    $(`#button5`).on("click", function () {
+    $(`#button5`).on("click", function (e) {
         $(`#inputCity`).val(localStorage.getItem(`button5`))
         $("[name='submit']")[0].click();
     });

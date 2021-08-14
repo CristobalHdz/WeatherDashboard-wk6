@@ -8,6 +8,7 @@ by Cristobal Hernandez
 
 Published link: https://cristobalhdz.github.io/WeatherDashboard-wk6/
 
+![Weather Dashboard](./Assets/WeatherDashboard.png)
 
 # Section 02: General Information
 This week's assignment is to make a weather application with the usage of the `https://openweathermap.org/api/one-call-api` API. Having to use local storage to store the most recent cities searched. Also, when we call the API we should see the weather for the next 5 days.
