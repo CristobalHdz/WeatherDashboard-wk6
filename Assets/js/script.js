@@ -9,6 +9,7 @@ $(document).ready(function () {
     var date = moment().format("MM/DD/YYYY");
     var daysCards = 5
     var maxSearchAmount = 5
+    var hoursFor24 = 8 // This is made because the API gives us the weather every 3 hours, so by multiplying it by 8 it hsould give us the weather every 24 hrs
 
     //Submit button functions
     $("#inputBtn").on("click", function (event) {
@@ -80,37 +81,28 @@ $(document).ready(function () {
             type: "GET",
             success: function (dayData) {
                 var dayResult = dailyCards(dayData);
-                var dayResult2 = dailyCards2(dayData);
-                $("#weatherCards").html(dayResult,dayResult2);
+                $("#weatherCards").html(dayResult);
                 $("#weatherCards").val('');
             }
         });
 
 
         function dailyCards(dayData) {
-            for (i = 1; i <= daysCards; i++) {
-                var dayFormat = new Date(dayData.list[i].dt * 1000).toLocaleDateString("en-US")
-                return `<div class='col l2 left-align' id='card${[i]}'>` +
+            var cardsArray = [];
+            for (i = 1; i <= daysCards*hoursFor24; i +=hoursFor24) {
+                var callList = dayData.list[i];
+                var dayFormat = new Date(callList.dt * 1000).toLocaleDateString("en-US");
+                var card = "<div class='col l2 left-align'>" +
                     "<h4>" + dayFormat + "</h4>" +
-                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + dayData.list[i].weather[0].icon + ".png'" + "</h5>" +
-                    "<h5>Temp: <b>" + dayData.list[i].main.temp + "</b>°F</h5>" +
-                    "<h5>Wind: <b>" + dayData.list[i].wind.speed + " </b>MPH</h5>" +
-                    "<h5>Humidity: <b>" + dayData.list[i].main.humidity + "</b>%</h5>" +
-                    "</div>"
+                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + callList.weather[0].icon + ".png'" + "</h5>" +
+                    "<h5>Temp: <b>" + callList.main.temp + "</b>°F</h5>" +
+                    "<h5>Wind: <b>" + callList.wind.speed + " </b>MPH</h5>" +
+                    "<h5>Humidity: <b>" + callList.main.humidity + "</b>%</h5>" +
+                    "</div>";
+                cardsArray.push(card);
+                console.log(dayData)
             }
-        };
-
-        function dailyCards2(dayData) {
-            for (i = 1; i <= daysCards; i++) {
-                var dayFormat = new Date(dayData.list[i].dt * 1000).toLocaleDateString("en-US")
-                return `<div class='col l2 left-align' id='card${[i]}'>` +
-                    "<h4>" + dayFormat + "</h4>" +
-                    "<h5>" + "<img src='http://openweathermap.org/img/w/" + dayData.list[i].weather[0].icon + ".png'" + "</h5>" +
-                    "<h5>Temp: <b>" + dayData.list[i].main.temp + "</b>°F</h5>" +
-                    "<h5>Wind: <b>" + dayData.list[i].wind.speed + " </b>MPH</h5>" +
-                    "<h5>Humidity: <b>" + dayData.list[i].main.humidity + "</b>%</h5>" +
-                    "</div>"
-            }
+            return cardsArray
         };
 
 

@@ -19,7 +19,8 @@ With the JS I started by appliying the local storage for the search of the 5 cit
 
 After a long time searching on ways to get the APIs I finally managed to get it right. First I started on getting the data for today's weather conditions. Getting the API to transfer info into the other API for `lon` and `lat` was the hardest thing by far for me. Thankfully one of the videos in the references had the correct idea on how to help me.
 
-At the end I worked on showing the 5 cards representing the next 5 days. Worked on transforming Unix into a date which was a little hard to get the info. The rest of this task's information was jsut copy paste from the today's card.
+At the end I worked on showing the 5 cards representing the next 5 days. Worked on transforming Unix into a date which was a little hard to get the info. The rest of this task's information was just copy paste from the today's card.
+After a lot of work, I found out that to make the next 5 days I had to put the dynamic html into an array and loop it. That made the trick work! The API I am using gives objects for every 3 hours, so I just multiply `i` by 8 to get the weather every 24 hours.
 
 # References
 `Videos viewed for code help: `
